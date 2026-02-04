@@ -1,0 +1,12 @@
+Aider Base Version Information
+==============================
+
+Forked from: https://github.com/Aider-AI/aider
+Forked on: 2026-02-04
+
+Base Version: v0.86.2.dev
+Base Commit: 4bf56b77145b0be593ed48c3c90cdecead217496
+Base Commit Date: 2026-01-19 07:39:27 -0800
+Base Commit Message: Merge pull request #4772 from markmcd/sdk-depro
+
+Note: This repository will be transferred to the optamize organization.

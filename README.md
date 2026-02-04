@@ -1,3 +1,11 @@
+# Opta CLI
+
+> **Note:** This is a fork of [Aider](https://github.com/Aider-AI/aider) for Opta CLI development.  
+> This repository will be transferred to the `optamize` organization.  
+> Base version: **v0.86.2.dev** (commit `4bf56b77` from 2026-01-19)
+
+---
+
 <p align="center">
     <a href="https://aider.chat/"><img src="https://aider.chat/assets/logo.svg" alt="Aider Logo" width="300"></a>
 </p>
