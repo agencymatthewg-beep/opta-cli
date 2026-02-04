@@ -1,0 +1,650 @@
+Metadata-Version: 2.4
+Name: opta-cli
+Version: 0.1.dev2+g1e8a0eef0.d20260204
+Summary: Enhanced Claude Code CLI
+Project-URL: Homepage, https://github.com/optamize/opta-cli
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development
+Requires-Python: <3.13,>=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+License-File: NOTICE
+Requires-Dist: aiohappyeyeballs==2.6.1
+Requires-Dist: aiohttp==3.13.2
+Requires-Dist: aiosignal==1.4.0
+Requires-Dist: annotated-types==0.7.0
+Requires-Dist: anyio==4.12.0
+Requires-Dist: asgiref==3.11.0
+Requires-Dist: attrs==25.4.0
+Requires-Dist: backoff==2.2.1
+Requires-Dist: beautifulsoup4==4.14.3
+Requires-Dist: certifi==2025.11.12
+Requires-Dist: cffi==2.0.0
+Requires-Dist: charset-normalizer==3.4.4
+Requires-Dist: click==8.3.1
+Requires-Dist: configargparse==1.7.1
+Requires-Dist: diff-match-patch==20241021
+Requires-Dist: diskcache==5.6.3
+Requires-Dist: distro==1.9.0
+Requires-Dist: fastuuid==0.14.0
+Requires-Dist: filelock==3.20.1
+Requires-Dist: flake8==7.3.0
+Requires-Dist: frozenlist==1.8.0
+Requires-Dist: fsspec==2025.12.0
+Requires-Dist: gitdb==4.0.12
+Requires-Dist: gitpython==3.1.45
+Requires-Dist: grep-ast==0.9.0
+Requires-Dist: grpcio==1.67.1
+Requires-Dist: h11==0.16.0
+Requires-Dist: hf-xet==1.2.0
+Requires-Dist: httpcore==1.0.9
+Requires-Dist: httpx==0.28.1
+Requires-Dist: huggingface-hub==0.36.0
+Requires-Dist: idna==3.11
+Requires-Dist: importlib-metadata==7.2.1
+Requires-Dist: importlib-resources==6.5.2
+Requires-Dist: jinja2==3.1.6
+Requires-Dist: jiter==0.12.0
+Requires-Dist: json5==0.12.1
+Requires-Dist: jsonschema==4.25.1
+Requires-Dist: jsonschema-specifications==2025.9.1
+Requires-Dist: litellm==1.80.10
+Requires-Dist: markdown-it-py==4.0.0
+Requires-Dist: markupsafe==3.0.3
+Requires-Dist: mccabe==0.7.0
+Requires-Dist: mdurl==0.1.2
+Requires-Dist: mixpanel==5.0.0
+Requires-Dist: mslex==1.3.0
+Requires-Dist: multidict==6.7.0
+Requires-Dist: networkx==3.4.2
+Requires-Dist: numpy==1.26.4
+Requires-Dist: openai==2.13.0
+Requires-Dist: oslex==0.1.3
+Requires-Dist: packaging==25.0
+Requires-Dist: pathspec==0.12.1
+Requires-Dist: pexpect==4.9.0
+Requires-Dist: pillow==12.0.0
+Requires-Dist: posthog==7.4.0
+Requires-Dist: prompt-toolkit==3.0.52
+Requires-Dist: propcache==0.4.1
+Requires-Dist: psutil==7.1.3
+Requires-Dist: ptyprocess==0.7.0
+Requires-Dist: pycodestyle==2.14.0
+Requires-Dist: pycparser==2.23
+Requires-Dist: pydantic==2.12.5
+Requires-Dist: pydantic-core==2.41.5
+Requires-Dist: pydub==0.25.1
+Requires-Dist: pyflakes==3.4.0
+Requires-Dist: pygments==2.19.2
+Requires-Dist: pypandoc==1.16.2
+Requires-Dist: pyperclip==1.11.0
+Requires-Dist: python-dateutil==2.9.0.post0
+Requires-Dist: python-dotenv==1.2.1
+Requires-Dist: pyyaml==6.0.3
+Requires-Dist: referencing==0.37.0
+Requires-Dist: regex==2025.11.3
+Requires-Dist: requests==2.32.5
+Requires-Dist: rich==14.2.0
+Requires-Dist: rpds-py==0.30.0
+Requires-Dist: scipy==1.15.3
+Requires-Dist: shtab==1.8.0
+Requires-Dist: six==1.17.0
+Requires-Dist: smmap==5.0.2
+Requires-Dist: sniffio==1.3.1
+Requires-Dist: socksio==1.0.0
+Requires-Dist: sounddevice==0.5.3
+Requires-Dist: soundfile==0.13.1
+Requires-Dist: soupsieve==2.8.1
+Requires-Dist: tiktoken==0.12.0
+Requires-Dist: tokenizers==0.22.1
+Requires-Dist: tqdm==4.67.1
+Requires-Dist: tree-sitter-c-sharp==0.23.1
+Requires-Dist: tree-sitter-embedded-template==0.25.0
+Requires-Dist: tree-sitter-language-pack==0.13.0
+Requires-Dist: tree-sitter-yaml==0.7.2
+Requires-Dist: typing-extensions==4.15.0
+Requires-Dist: typing-inspection==0.4.2
+Requires-Dist: urllib3==2.6.2
+Requires-Dist: watchfiles==1.1.1
+Requires-Dist: wcwidth==0.2.14
+Requires-Dist: yarl==1.22.0
+Requires-Dist: zipp==3.23.0
+Requires-Dist: tree-sitter==0.23.2; python_version < "3.10"
+Requires-Dist: tree-sitter==0.25.2; python_version >= "3.10"
+Provides-Extra: dev
+Requires-Dist: build==1.3.0; extra == "dev"
+Requires-Dist: cachetools==6.2.4; extra == "dev"
+Requires-Dist: certifi==2025.11.12; extra == "dev"
+Requires-Dist: cfgv==3.5.0; extra == "dev"
+Requires-Dist: charset-normalizer==3.4.4; extra == "dev"
+Requires-Dist: click==8.3.1; extra == "dev"
+Requires-Dist: codespell==2.4.1; extra == "dev"
+Requires-Dist: cogapp==3.6.0; extra == "dev"
+Requires-Dist: contourpy==1.3.3; extra == "dev"
+Requires-Dist: cycler==0.12.1; extra == "dev"
+Requires-Dist: distlib==0.4.0; extra == "dev"
+Requires-Dist: filelock==3.20.1; extra == "dev"
+Requires-Dist: fonttools==4.61.1; extra == "dev"
+Requires-Dist: google-api-core[grpc]==2.28.1; extra == "dev"
+Requires-Dist: google-auth==2.45.0; extra == "dev"
+Requires-Dist: google-cloud-bigquery==3.39.0; extra == "dev"
+Requires-Dist: google-cloud-core==2.5.0; extra == "dev"
+Requires-Dist: google-crc32c==1.8.0; extra == "dev"
+Requires-Dist: google-resumable-media==2.8.0; extra == "dev"
+Requires-Dist: googleapis-common-protos==1.72.0; extra == "dev"
+Requires-Dist: grpcio==1.67.1; extra == "dev"
+Requires-Dist: grpcio-status==1.67.1; extra == "dev"
+Requires-Dist: identify==2.6.15; extra == "dev"
+Requires-Dist: idna==3.11; extra == "dev"
+Requires-Dist: imgcat==0.6.0; extra == "dev"
+Requires-Dist: iniconfig==2.3.0; extra == "dev"
+Requires-Dist: kiwisolver==1.4.9; extra == "dev"
+Requires-Dist: lox==1.0.0; extra == "dev"
+Requires-Dist: markdown-it-py==4.0.0; extra == "dev"
+Requires-Dist: matplotlib==3.10.8; extra == "dev"
+Requires-Dist: mdurl==0.1.2; extra == "dev"
+Requires-Dist: nodeenv==1.9.1; extra == "dev"
+Requires-Dist: numpy==1.26.4; extra == "dev"
+Requires-Dist: packaging==25.0; extra == "dev"
+Requires-Dist: pandas==2.3.3; extra == "dev"
+Requires-Dist: pillow==12.0.0; extra == "dev"
+Requires-Dist: pip==25.3; extra == "dev"
+Requires-Dist: pip-tools==7.5.2; extra == "dev"
+Requires-Dist: platformdirs==4.5.1; extra == "dev"
+Requires-Dist: pluggy==1.6.0; extra == "dev"
+Requires-Dist: pre-commit==4.5.1; extra == "dev"
+Requires-Dist: proto-plus==1.27.0; extra == "dev"
+Requires-Dist: protobuf==5.28.3; extra == "dev"
+Requires-Dist: pyasn1==0.6.1; extra == "dev"
+Requires-Dist: pyasn1-modules==0.4.2; extra == "dev"
+Requires-Dist: pygments==2.19.2; extra == "dev"
+Requires-Dist: pyparsing==3.2.5; extra == "dev"
+Requires-Dist: pyproject-hooks==1.2.0; extra == "dev"
+Requires-Dist: pytest==9.0.2; extra == "dev"
+Requires-Dist: pytest-env==1.2.0; extra == "dev"
+Requires-Dist: python-dateutil==2.9.0.post0; extra == "dev"
+Requires-Dist: pytz==2025.2; extra == "dev"
+Requires-Dist: pyyaml==6.0.3; extra == "dev"
+Requires-Dist: requests==2.32.5; extra == "dev"
+Requires-Dist: rich==14.2.0; extra == "dev"
+Requires-Dist: rsa==4.9.1; extra == "dev"
+Requires-Dist: semver==3.0.4; extra == "dev"
+Requires-Dist: setuptools==80.9.0; extra == "dev"
+Requires-Dist: shellingham==1.5.4; extra == "dev"
+Requires-Dist: six==1.17.0; extra == "dev"
+Requires-Dist: typer==0.20.0; extra == "dev"
+Requires-Dist: typing-extensions==4.15.0; extra == "dev"
+Requires-Dist: tzdata==2025.3; extra == "dev"
+Requires-Dist: urllib3==2.6.2; extra == "dev"
+Requires-Dist: uv==0.9.18; extra == "dev"
+Requires-Dist: virtualenv==20.35.4; extra == "dev"
+Requires-Dist: wheel==0.45.1; extra == "dev"
+Provides-Extra: help
+Requires-Dist: aiohappyeyeballs==2.6.1; extra == "help"
+Requires-Dist: aiohttp==3.13.2; extra == "help"
+Requires-Dist: aiosignal==1.4.0; extra == "help"
+Requires-Dist: aiosqlite==0.22.0; extra == "help"
+Requires-Dist: annotated-types==0.7.0; extra == "help"
+Requires-Dist: anyio==4.12.0; extra == "help"
+Requires-Dist: attrs==25.4.0; extra == "help"
+Requires-Dist: banks==2.2.0; extra == "help"
+Requires-Dist: certifi==2025.11.12; extra == "help"
+Requires-Dist: charset-normalizer==3.4.4; extra == "help"
+Requires-Dist: click==8.3.1; extra == "help"
+Requires-Dist: colorama==0.4.6; extra == "help"
+Requires-Dist: dataclasses-json==0.6.7; extra == "help"
+Requires-Dist: deprecated==1.3.1; extra == "help"
+Requires-Dist: dirtyjson==1.0.8; extra == "help"
+Requires-Dist: filelock==3.20.1; extra == "help"
+Requires-Dist: filetype==1.2.0; extra == "help"
+Requires-Dist: frozenlist==1.8.0; extra == "help"
+Requires-Dist: fsspec==2025.12.0; extra == "help"
+Requires-Dist: greenlet==3.3.0; extra == "help"
+Requires-Dist: griffe==1.15.0; extra == "help"
+Requires-Dist: h11==0.16.0; extra == "help"
+Requires-Dist: hf-xet==1.2.0; extra == "help"
+Requires-Dist: httpcore==1.0.9; extra == "help"
+Requires-Dist: httpx==0.28.1; extra == "help"
+Requires-Dist: huggingface-hub[inference]==0.36.0; extra == "help"
+Requires-Dist: idna==3.11; extra == "help"
+Requires-Dist: jinja2==3.1.6; extra == "help"
+Requires-Dist: joblib==1.5.3; extra == "help"
+Requires-Dist: llama-index-core==0.14.10; extra == "help"
+Requires-Dist: llama-index-embeddings-huggingface==0.6.1; extra == "help"
+Requires-Dist: llama-index-instrumentation==0.4.2; extra == "help"
+Requires-Dist: llama-index-workflows==2.11.5; extra == "help"
+Requires-Dist: markupsafe==3.0.3; extra == "help"
+Requires-Dist: marshmallow==3.26.1; extra == "help"
+Requires-Dist: mpmath==1.3.0; extra == "help"
+Requires-Dist: multidict==6.7.0; extra == "help"
+Requires-Dist: mypy-extensions==1.1.0; extra == "help"
+Requires-Dist: nest-asyncio==1.6.0; extra == "help"
+Requires-Dist: networkx==3.4.2; extra == "help"
+Requires-Dist: nltk==3.9.2; extra == "help"
+Requires-Dist: numpy==1.26.4; extra == "help"
+Requires-Dist: nvidia-cublas-cu12==12.8.4.1; extra == "help"
+Requires-Dist: nvidia-cuda-cupti-cu12==12.8.90; extra == "help"
+Requires-Dist: nvidia-cuda-nvrtc-cu12==12.8.93; extra == "help"
+Requires-Dist: nvidia-cuda-runtime-cu12==12.8.90; extra == "help"
+Requires-Dist: nvidia-cudnn-cu12==9.10.2.21; extra == "help"
+Requires-Dist: nvidia-cufft-cu12==11.3.3.83; extra == "help"
+Requires-Dist: nvidia-cufile-cu12==1.13.1.3; extra == "help"
+Requires-Dist: nvidia-curand-cu12==10.3.9.90; extra == "help"
+Requires-Dist: nvidia-cusolver-cu12==11.7.3.90; extra == "help"
+Requires-Dist: nvidia-cusparse-cu12==12.5.8.93; extra == "help"
+Requires-Dist: nvidia-cusparselt-cu12==0.7.1; extra == "help"
+Requires-Dist: nvidia-nccl-cu12==2.27.5; extra == "help"
+Requires-Dist: nvidia-nvjitlink-cu12==12.8.93; extra == "help"
+Requires-Dist: nvidia-nvshmem-cu12==3.3.20; extra == "help"
+Requires-Dist: nvidia-nvtx-cu12==12.8.90; extra == "help"
+Requires-Dist: packaging==25.0; extra == "help"
+Requires-Dist: pillow==12.0.0; extra == "help"
+Requires-Dist: platformdirs==4.5.1; extra == "help"
+Requires-Dist: propcache==0.4.1; extra == "help"
+Requires-Dist: pydantic==2.12.5; extra == "help"
+Requires-Dist: pydantic-core==2.41.5; extra == "help"
+Requires-Dist: pyyaml==6.0.3; extra == "help"
+Requires-Dist: regex==2025.11.3; extra == "help"
+Requires-Dist: requests==2.32.5; extra == "help"
+Requires-Dist: safetensors==0.7.0; extra == "help"
+Requires-Dist: scikit-learn==1.8.0; extra == "help"
+Requires-Dist: scipy==1.15.3; extra == "help"
+Requires-Dist: sentence-transformers==5.2.0; extra == "help"
+Requires-Dist: setuptools==80.9.0; extra == "help"
+Requires-Dist: sqlalchemy[asyncio]==2.0.45; extra == "help"
+Requires-Dist: sympy==1.14.0; extra == "help"
+Requires-Dist: tenacity==9.1.2; extra == "help"
+Requires-Dist: threadpoolctl==3.6.0; extra == "help"
+Requires-Dist: tiktoken==0.12.0; extra == "help"
+Requires-Dist: tokenizers==0.22.1; extra == "help"
+Requires-Dist: torch==2.9.1; extra == "help"
+Requires-Dist: tqdm==4.67.1; extra == "help"
+Requires-Dist: transformers==4.57.3; extra == "help"
+Requires-Dist: triton==3.5.1; extra == "help"
+Requires-Dist: typing-extensions==4.15.0; extra == "help"
+Requires-Dist: typing-inspect==0.9.0; extra == "help"
+Requires-Dist: typing-inspection==0.4.2; extra == "help"
+Requires-Dist: urllib3==2.6.2; extra == "help"
+Requires-Dist: wrapt==2.0.1; extra == "help"
+Requires-Dist: yarl==1.22.0; extra == "help"
+Provides-Extra: browser
+Requires-Dist: altair==6.0.0; extra == "browser"
+Requires-Dist: attrs==25.4.0; extra == "browser"
+Requires-Dist: blinker==1.9.0; extra == "browser"
+Requires-Dist: cachetools==6.2.4; extra == "browser"
+Requires-Dist: certifi==2025.11.12; extra == "browser"
+Requires-Dist: charset-normalizer==3.4.4; extra == "browser"
+Requires-Dist: click==8.3.1; extra == "browser"
+Requires-Dist: gitdb==4.0.12; extra == "browser"
+Requires-Dist: gitpython==3.1.45; extra == "browser"
+Requires-Dist: idna==3.11; extra == "browser"
+Requires-Dist: jinja2==3.1.6; extra == "browser"
+Requires-Dist: jsonschema==4.25.1; extra == "browser"
+Requires-Dist: jsonschema-specifications==2025.9.1; extra == "browser"
+Requires-Dist: markupsafe==3.0.3; extra == "browser"
+Requires-Dist: narwhals==2.14.0; extra == "browser"
+Requires-Dist: numpy==1.26.4; extra == "browser"
+Requires-Dist: packaging==25.0; extra == "browser"
+Requires-Dist: pandas==2.3.3; extra == "browser"
+Requires-Dist: pillow==12.0.0; extra == "browser"
+Requires-Dist: protobuf==6.33.4; extra == "browser"
+Requires-Dist: pyarrow==22.0.0; extra == "browser"
+Requires-Dist: pydeck==0.9.1; extra == "browser"
+Requires-Dist: python-dateutil==2.9.0.post0; extra == "browser"
+Requires-Dist: pytz==2025.2; extra == "browser"
+Requires-Dist: referencing==0.37.0; extra == "browser"
+Requires-Dist: requests==2.32.5; extra == "browser"
+Requires-Dist: rpds-py==0.30.0; extra == "browser"
+Requires-Dist: six==1.17.0; extra == "browser"
+Requires-Dist: smmap==5.0.2; extra == "browser"
+Requires-Dist: streamlit==1.52.2; extra == "browser"
+Requires-Dist: tenacity==9.1.2; extra == "browser"
+Requires-Dist: toml==0.10.2; extra == "browser"
+Requires-Dist: tornado==6.5.4; extra == "browser"
+Requires-Dist: typing-extensions==4.15.0; extra == "browser"
+Requires-Dist: tzdata==2025.3; extra == "browser"
+Requires-Dist: urllib3==2.6.2; extra == "browser"
+Requires-Dist: watchdog==6.0.0; extra == "browser"
+Provides-Extra: playwright
+Requires-Dist: greenlet==3.3.0; extra == "playwright"
+Requires-Dist: playwright==1.57.0; extra == "playwright"
+Requires-Dist: pyee==13.0.0; extra == "playwright"
+Requires-Dist: typing-extensions==4.15.0; extra == "playwright"
+Dynamic: license-file
+
+# Opta CLI
+
+> **Enhanced Claude Code** — All the best AI CLI features, combined.
+
+**Opta CLI** is an enhanced version of Claude Code that brings together the best features from across the AI coding tool ecosystem. It maintains full compatibility with Claude Code while adding production-grade middleware, enhanced provider support, terminal theming, and advanced multi-agent capabilities.
+
+> **Note:** This repository will be transferred to the [`optamize`](https://github.com/optamize) organization.  
+> Current base: Fork of [Aider v0.86.2](https://github.com/Aider-AI/aider)
+
+---
+
+## 🚀 Installation
+
+```bash
+pip install opta-cli
+```
+
+### Requirements
+- Python 3.9 or later
+- API key for your preferred LLM provider (Claude, GPT-4, etc.)
+
+---
+
+## ⚡ Quick Start
+
+### Interactive Mode
+```bash
+opta
+```
+
+Start an interactive coding session. Opta will help you build, refactor, and debug code.
+
+### Print Mode
+```bash
+opta -p "explain how this function works"
+```
+
+Get instant answers without entering interactive mode.
+
+### Continue Conversation
+```bash
+opta -c
+```
+
+Resume your last conversation.
+
+### With Specific Model
+```bash
+opta --model opus
+opta --model sonnet
+```
+
+### Pipe Input
+```bash
+cat app.py | opta -p "add error handling"
+```
+
+---
+
+## ✨ Features
+
+### Claude Code Compatibility
+- **Interactive REPL** — Natural conversation with your codebase
+- **MCP Integration** — Full Model Context Protocol server support
+- **Subagents** — Delegate tasks to specialized AI agents
+- **Session Management** — Auto-save and resume conversations
+- **Permission System** — Fine-grained control over allowed tools
+- **Memory & Context** — OPTA.md files for persistent instructions
+- **Git Integration** — Auto-commits with AI-generated messages
+
+### Enhanced Beyond Claude Code
+
+#### Production Middleware
+- **Retry logic** with exponential backoff
+- **Circuit breaker** for failing services
+- **Rate limiting** to prevent quota exhaustion
+- **Token tracking** — Real-time usage display
+
+#### Enhanced Providers
+- **15+ LLM Providers** — Claude, GPT-4, Gemini, Perplexity, Groq, Mistral, watsonx, and more
+- **Local models** — Ollama, LMStudio, LocalAI support
+- **Smart model selection** — Cost optimization
+
+#### Terminal Experience
+- **8 Terminal Themes** — Monokai, Dracula, Solarized, Nord, Gruvbox, Tomorrow, GitHub, Default
+- **Shell mode toggle** — Ctrl-X to switch between AI and shell
+- **Streaming improvements** — Better real-time feedback
+
+#### IDE Integration
+- **VS Code extension** — Full IDE experience (planned)
+- **ACP support** — Agent Client Protocol for Zed, JetBrains (planned)
+- **File watching** — Auto-trigger on save
+
+#### Multi-Agent Orchestration
+- **Agent swarms** — Sequential, hierarchical, and graph patterns
+- **Parallel execution** — Multiple agents working simultaneously
+- **Agent marketplace** — Pre-built agent templates (planned)
+
+---
+
+## 📖 Usage Examples
+
+### Start with Files
+```bash
+opta app.py utils.py
+```
+
+### Add MCP Server
+```bash
+opta mcp add @modelcontextprotocol/server-filesystem
+```
+
+### Use Subagents
+```bash
+opta --agents agents.json
+```
+
+### Set Spending Limit
+```bash
+opta --max-budget-usd 5.00
+```
+
+### Auto-commit Changes
+```bash
+opta --auto-commits
+```
+
+---
+
+## 🎨 Terminal Themes
+
+Switch themes with:
+```bash
+opta --theme dracula
+```
+
+Available themes: `monokai`, `dracula`, `solarized-dark`, `solarized-light`, `nord`, `gruvbox-dark`, `gruvbox-light`, `tomorrow-night`, `github`, `default`
+
+---
+
+## 🔧 Configuration
+
+### Global Config
+```bash
+opta config set model sonnet
+opta config set auto-commits true
+```
+
+### OPTA.md Files
+Create an `OPTA.md` file in your project root for persistent instructions:
+
+```markdown
+# Project Context
+This is a Flask API that handles user authentication.
+
+## Code Style
+- Use type hints
+- Prefer dataclasses over dicts
+- Maximum line length: 100 characters
+
+## Testing
+Run tests with: pytest tests/
+```
+
+Opta will automatically load these instructions in every session.
+
+---
+
+## 🤖 Subagents
+
+Define specialized agents in `agents.json`:
+
+```json
+{
+  "agents": [
+    {
+      "name": "test-writer",
+      "description": "Writes unit tests",
+      "model": "sonnet",
+      "tools": ["write_file", "read_file"]
+    },
+    {
+      "name": "code-reviewer",
+      "description": "Reviews code for bugs",
+      "model": "opus",
+      "tools": ["read_file"]
+    }
+  ]
+}
+```
+
+Opta will automatically invoke the right agent based on your request.
+
+---
+
+## 🔌 MCP Integration
+
+Connect to Model Context Protocol servers:
+
+```bash
+# Add a server
+opta mcp add @modelcontextprotocol/server-filesystem
+
+# List connected servers
+opta mcp list
+
+# Configure with file
+opta --mcp-config mcp-config.json
+```
+
+---
+
+## 🛠️ Advanced Features
+
+### Shell Mode Toggle
+Press **Ctrl-X** to toggle between AI mode and shell mode. Execute shell commands without leaving Opta.
+
+### Permission Modes
+```bash
+# Plan mode - ask before executing
+opta --permission-mode plan
+
+# Restrict tools
+opta --disallowedTools delete_file,exec
+
+# Skip permissions (use with caution!)
+opta --dangerously-skip-permissions
+```
+
+### Session Management
+```bash
+# Resume by ID
+opta -r abc123
+
+# Fork a session
+opta --fork-session abc123
+
+# Link to GitHub PR
+opta --from-pr https://github.com/user/repo/pull/123
+```
+
+---
+
+## 📊 Supported Models
+
+| Provider | Models | Notes |
+|----------|--------|-------|
+| Anthropic | Claude Opus, Sonnet, Haiku | Recommended |
+| OpenAI | GPT-4, GPT-4 Turbo | Excellent |
+| Google | Gemini 2.0 Flash | Fast & affordable |
+| Groq | Llama 3.3 70B | Extremely fast |
+| Perplexity | Sonar models | Web-enhanced |
+| Local | Ollama, LMStudio | Privacy-focused |
+
+Full list: [Supported Models](https://aider.chat/docs/llms.html)
+
+---
+
+## 🎯 Roadmap
+
+### v1.0 (MVP) — Current
+- [x] Claude Code parity
+- [x] Production middleware
+- [x] Enhanced providers
+- [x] Terminal theming
+- [ ] Documentation complete
+
+### v1.5 (Enhanced)
+- [ ] VS Code extension
+- [ ] ACP support for Zed/JetBrains
+- [ ] Enhanced agent marketplace
+- [ ] K2.5 local swarm optimization
+
+### v2.0 (Full Vision)
+- [ ] Multi-agent orchestration UI
+- [ ] Full OpenClaw ecosystem integration
+- [ ] Agent collaboration patterns
+- [ ] Performance dashboard
+
+---
+
+## 📚 Documentation
+
+- **Getting Started** — [Quick Start Guide](https://opta-cli.optamize.biz/docs/quick-start)
+- **Configuration** — [Config Reference](https://opta-cli.optamize.biz/docs/config)
+- **MCP Servers** — [MCP Guide](https://opta-cli.optamize.biz/docs/mcp)
+- **Subagents** — [Agent Guide](https://opta-cli.optamize.biz/docs/agents)
+- **API Reference** — [API Docs](https://opta-cli.optamize.biz/docs/api)
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+---
+
+## 📜 License
+
+Apache 2.0 — See [LICENSE.txt](LICENSE.txt)
+
+This project is a fork of [Aider](https://github.com/Aider-AI/aider) by Paul Gauthier.
+
+---
+
+## 💬 Community
+
+- **GitHub Issues** — [Report bugs or request features](https://github.com/optamize/opta-cli/issues)
+- **Discord** — Coming soon
+- **Twitter** — [@optamize](https://twitter.com/optamize)
+
+---
+
+## 🙏 Acknowledgments
+
+Built on the excellent foundation of [Aider](https://github.com/Aider-AI/aider) by Paul Gauthier and contributors.
+
+Incorporates ideas and features from:
+- [MCP-CLI](https://github.com/modelcontextprotocol/cli) — Production middleware
+- [Kimi-CLI](https://github.com/kimi-ai/kimi-cli) — Shell mode integration
+- [Continue](https://github.com/continuedev/continue) — IDE patterns
+- [Swarms](https://github.com/kyegomez/swarms) — Multi-agent orchestration
+
+---
+
+<p align="center">
+  <strong>Opta CLI — What Claude Code should be.</strong>
+</p>

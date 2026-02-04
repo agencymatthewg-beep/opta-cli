@@ -1,0 +1,2 @@
+[console_scripts]
+opta = opta.main:main
