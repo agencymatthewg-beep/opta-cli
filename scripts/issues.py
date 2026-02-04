@@ -48,14 +48,14 @@ CLOSE_STALE_COMMENT = (
 
 CLOSE_FIXED_ENHANCEMENT_COMMENT = (
     """I'm closing this enhancement request since it has been marked as 'fixed' for over """
-    """3 weeks. The requested feature should now be available in recent versions of aider.\n\n"""
+    """3 weeks. The requested feature should now be available in recent versions of opta.\n\n"""
     """If you find that this enhancement is still needed, please feel free to reopen this """
     """issue or create a new one.""" + BOT_SUFFIX
 )
 
 CLOSE_FIXED_BUG_COMMENT = (
     """I'm closing this bug report since it has been marked as 'fixed' for over """
-    """3 weeks. This issue should be resolved in recent versions of aider.\n\n"""
+    """3 weeks. This issue should be resolved in recent versions of opta.\n\n"""
     """If you find that this bug is still present, please feel free to reopen this """
     """issue or create a new one with steps to reproduce.""" + BOT_SUFFIX
 )

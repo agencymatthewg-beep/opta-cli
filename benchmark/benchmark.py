@@ -25,10 +25,10 @@ from dotenv import load_dotenv
 from plots import plot_refactoring
 from rich.console import Console
 
-from aider import models, sendchat
-from aider.coders import Coder, base_coder
-from aider.dump import dump  # noqa: F401
-from aider.io import InputOutput
+from opta import models, sendchat
+from opta.coders import Coder, base_coder
+from opta.dump import dump  # noqa: F401
+from opta.io import InputOutput
 
 BENCHMARK_DNAME = Path(os.environ.get("AIDER_BENCHMARK_DIR", "tmp.benchmarks"))
 
@@ -175,7 +175,7 @@ def main(
     replay: str = typer.Option(
         None,
         "--replay",
-        help="Replay previous .aider.chat.history.md responses from previous benchmark run",
+        help="Replay previous .opta.chat.history.md responses from previous benchmark run",
     ),
     keywords: str = typer.Option(
         None, "--keywords", "-k", help="Only run tests that contain keywords (comma sep)"
@@ -320,7 +320,7 @@ def main(
 
     test_dnames = sorted(str(d.relative_to(original_dname)) for d in exercise_dirs)
 
-    resource_metadata = importlib_resources.files("aider.resources").joinpath("model-metadata.json")
+    resource_metadata = importlib_resources.files("opta.resources").joinpath("model-metadata.json")
     model_metadata_files_loaded = models.register_litellm_models([resource_metadata])
     dump(model_metadata_files_loaded)
 
@@ -435,7 +435,7 @@ def show_diffs(dirnames):
         print()
         print(testcase)
         for outcome, dirname in zip(all_outcomes, dirnames):
-            print(outcome, f"{dirname}/{testcase}/.aider.chat.history.md")
+            print(outcome, f"{dirname}/{testcase}/.opta.chat.history.md")
 
     changed = set(testcases) - unchanged
     print()
@@ -450,9 +450,9 @@ def load_results(dirname, stats_languages=None):
 
     if stats_languages:
         languages = [lang.strip().lower() for lang in stats_languages.split(",")]
-        glob_patterns = [f"{lang}/exercises/practice/*/.aider.results.json" for lang in languages]
+        glob_patterns = [f"{lang}/exercises/practice/*/.opta.results.json" for lang in languages]
     else:
-        glob_patterns = ["*/exercises/practice/*/.aider.results.json"]
+        glob_patterns = ["*/exercises/practice/*/.opta.results.json"]
 
     for pattern in glob_patterns:
         for fname in dirname.glob(pattern):
@@ -652,7 +652,7 @@ def get_replayed_content(replay_dname, test_dname):
     dump(replay_dname, test_dname)
 
     test_name = test_dname.name
-    replay_fname = replay_dname / test_name / ".aider.chat.history.md"
+    replay_fname = replay_dname / test_name / ".opta.chat.history.md"
     dump(replay_fname)
 
     res = replay_fname.read_text()
@@ -672,7 +672,7 @@ def run_test(original_dname, testdir, *args, **kwargs):
         traceback.print_exc()
 
         testdir = Path(testdir)
-        results_fname = testdir / ".aider.results.json"
+        results_fname = testdir / ".opta.results.json"
         results_fname.write_text(json.dumps(dict(exception=traceback.format_exc())))
 
 
@@ -701,9 +701,9 @@ def run_test_real(
 
     testdir = Path(testdir)
 
-    history_fname = testdir / ".aider.chat.history.md"
+    history_fname = testdir / ".opta.chat.history.md"
 
-    results_fname = testdir / ".aider.results.json"
+    results_fname = testdir / ".opta.results.json"
     if results_fname.exists():
         try:
             res = json.loads(results_fname.read_text())

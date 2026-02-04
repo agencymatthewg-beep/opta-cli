@@ -7,11 +7,11 @@ from pathlib import Path
 
 import git
 
-from aider.dump import dump  # noqa: F401
-from aider.io import InputOutput
-from aider.models import Model
-from aider.repomap import RepoMap
-from aider.utils import GitTemporaryDirectory, IgnorantTemporaryDirectory
+from opta.dump import dump  # noqa: F401
+from opta.io import InputOutput
+from opta.models import Model
+from opta.repomap import RepoMap
+from opta.utils import GitTemporaryDirectory, IgnorantTemporaryDirectory
 
 
 class TestRepoMap(unittest.TestCase):

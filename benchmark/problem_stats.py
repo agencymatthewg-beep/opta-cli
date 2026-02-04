@@ -8,7 +8,7 @@ from pathlib import Path
 
 import yaml
 
-from aider.dump import dump  # noqa
+from opta.dump import dump  # noqa
 
 HARD_SET_NUM = 3  # Number of models that defines the hard set threshold
 
@@ -34,7 +34,7 @@ def load_results(dirname):
     parse_errors = []  # Track which exercises had parse errors for this model
 
     # Look in language subdirectories under exercises/practice
-    for fname in benchmark_dir.glob("*/exercises/practice/*/.aider.results.json"):
+    for fname in benchmark_dir.glob("*/exercises/practice/*/.opta.results.json"):
         error = False
         try:
             results = json.loads(fname.read_text())

@@ -10,25 +10,25 @@ else
 fi
 
 if [ "$ARG" != "--check" ]; then
-  tail -1000 ~/.aider/analytics.jsonl > aider/website/assets/sample-analytics.jsonl
-  cog -r aider/website/docs/faq.md
+  tail -1000 ~/.opta/analytics.jsonl > opta/website/assets/sample-analytics.jsonl
+  cog -r opta/website/docs/faq.md
 fi
 
 # README.md before index.md, because index.md uses cog to include README.md
 cog $ARG \
     README.md \
-    aider/website/index.html \
-    aider/website/HISTORY.md \
-    aider/website/docs/usage/commands.md \
-    aider/website/docs/languages.md \
-    aider/website/docs/config/dotenv.md \
-    aider/website/docs/config/options.md \
-    aider/website/docs/config/aider_conf.md \
-    aider/website/docs/config/adv-model-settings.md \
-    aider/website/docs/config/model-aliases.md \
-    aider/website/docs/leaderboards/index.md \
-    aider/website/docs/leaderboards/edit.md \
-    aider/website/docs/leaderboards/refactor.md \
-    aider/website/docs/llms/other.md \
-    aider/website/docs/more/infinite-output.md \
-    aider/website/docs/legal/privacy.md
+    opta/website/index.html \
+    opta/website/HISTORY.md \
+    opta/website/docs/usage/commands.md \
+    opta/website/docs/languages.md \
+    opta/website/docs/config/dotenv.md \
+    opta/website/docs/config/options.md \
+    opta/website/docs/config/opta_conf.md \
+    opta/website/docs/config/adv-model-settings.md \
+    opta/website/docs/config/model-aliases.md \
+    opta/website/docs/leaderboards/index.md \
+    opta/website/docs/leaderboards/edit.md \
+    opta/website/docs/leaderboards/refactor.md \
+    opta/website/docs/llms/other.md \
+    opta/website/docs/more/infinite-output.md \
+    opta/website/docs/legal/privacy.md

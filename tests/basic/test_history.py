@@ -1,7 +1,7 @@
 from unittest import TestCase, mock
 
-from aider.history import ChatSummary
-from aider.models import Model
+from opta.history import ChatSummary
+from opta.models import Model
 
 
 def count(msg):
