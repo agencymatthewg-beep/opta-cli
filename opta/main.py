@@ -43,6 +43,8 @@ from opta.middleware import (
     RateLimiterConfig,
     RetryConfig,
 )
+from opta.theme_manager import ThemeManager
+from opta.themes import format_theme_list
 
 from .dump import dump  # noqa: F401
 
@@ -536,19 +538,50 @@ def main(argv=None, input=None, output=None, force_git_root=None, return_coder=F
     if args.timeout:
         models.request_timeout = args.timeout
 
-    if args.dark_mode:
-        args.user_input_color = "#32FF32"
-        args.tool_error_color = "#FF3333"
-        args.tool_warning_color = "#FFFF00"
-        args.assistant_output_color = "#00FFFF"
-        args.code_theme = "monokai"
+    # Handle --list-themes (early exit)
+    if getattr(args, "list_themes", False):
+        print(format_theme_list())
+        return 0
 
-    if args.light_mode:
-        args.user_input_color = "green"
-        args.tool_error_color = "red"
-        args.tool_warning_color = "#FFA500"
-        args.assistant_output_color = "blue"
-        args.code_theme = "default"
+    # Resolve terminal theme
+    theme_manager = ThemeManager()
+    try:
+        resolved_theme = theme_manager.resolve_theme(
+            theme_name=getattr(args, "theme", None),
+            dark_mode=args.dark_mode,
+            light_mode=args.light_mode,
+            theme_file=getattr(args, "theme_file", None),
+            user_input_color=args.user_input_color,
+            tool_output_color=args.tool_output_color,
+            tool_error_color=args.tool_error_color,
+            tool_warning_color=args.tool_warning_color,
+            assistant_output_color=args.assistant_output_color,
+            completion_menu_color=args.completion_menu_color,
+            completion_menu_bg_color=args.completion_menu_bg_color,
+            completion_menu_current_color=args.completion_menu_current_color,
+            completion_menu_current_bg_color=args.completion_menu_current_bg_color,
+            code_theme=args.code_theme,
+        )
+    except ValueError as e:
+        print(f"Error: {e}")
+        return 1
+
+    # Get colors from theme or use defaults
+    if resolved_theme:
+        theme_colors = theme_manager.get_io_colors(resolved_theme)
+    else:
+        theme_colors = {
+            "user_input_color": args.user_input_color,
+            "tool_output_color": args.tool_output_color,
+            "tool_error_color": args.tool_error_color,
+            "tool_warning_color": args.tool_warning_color,
+            "assistant_output_color": args.assistant_output_color,
+            "completion_menu_color": args.completion_menu_color,
+            "completion_menu_bg_color": args.completion_menu_bg_color,
+            "completion_menu_current_color": args.completion_menu_current_color,
+            "completion_menu_current_bg_color": args.completion_menu_current_bg_color,
+            "code_theme": args.code_theme,
+        }
 
     if return_coder and args.yes_always is None:
         args.yes_always = True
@@ -563,16 +596,16 @@ def main(argv=None, input=None, output=None, force_git_root=None, return_coder=F
             args.chat_history_file,
             input=input,
             output=output,
-            user_input_color=args.user_input_color,
-            tool_output_color=args.tool_output_color,
-            tool_warning_color=args.tool_warning_color,
-            tool_error_color=args.tool_error_color,
-            completion_menu_color=args.completion_menu_color,
-            completion_menu_bg_color=args.completion_menu_bg_color,
-            completion_menu_current_color=args.completion_menu_current_color,
-            completion_menu_current_bg_color=args.completion_menu_current_bg_color,
-            assistant_output_color=args.assistant_output_color,
-            code_theme=args.code_theme,
+            user_input_color=theme_colors["user_input_color"],
+            tool_output_color=theme_colors["tool_output_color"],
+            tool_warning_color=theme_colors["tool_warning_color"],
+            tool_error_color=theme_colors["tool_error_color"],
+            completion_menu_color=theme_colors["completion_menu_color"],
+            completion_menu_bg_color=theme_colors["completion_menu_bg_color"],
+            completion_menu_current_color=theme_colors["completion_menu_current_color"],
+            completion_menu_current_bg_color=theme_colors["completion_menu_current_bg_color"],
+            assistant_output_color=theme_colors["assistant_output_color"],
+            code_theme=theme_colors["code_theme"],
             dry_run=args.dry_run,
             encoding=args.encoding,
             line_endings=args.line_endings,

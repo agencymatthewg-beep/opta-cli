@@ -302,15 +302,37 @@ def get_parser(default_config_files, git_root):
     ##########
     group = parser.add_argument_group("Output settings")
     group.add_argument(
+        "--theme",
+        metavar="THEME",
+        default=None,
+        help=(
+            "Set the color theme. Options: monokai, dracula, nord, gruvbox-dark, "
+            "gruvbox-light, solarized-dark, solarized-light, github. "
+            "Use --list-themes to see all available themes."
+        ),
+    )
+    group.add_argument(
+        "--list-themes",
+        action="store_true",
+        help="List all available color themes and exit",
+        default=False,
+    )
+    group.add_argument(
+        "--theme-file",
+        metavar="THEME_FILE",
+        default=None,
+        help="Load a custom theme from a YAML file",
+    )
+    group.add_argument(
         "--dark-mode",
         action="store_true",
-        help="Use colors suitable for a dark terminal background (default: False)",
+        help="Use Monokai theme for dark terminals (shortcut for --theme monokai)",
         default=False,
     )
     group.add_argument(
         "--light-mode",
         action="store_true",
-        help="Use colors suitable for a light terminal background (default: False)",
+        help="Use GitHub theme for light terminals (shortcut for --theme github)",
         default=False,
     )
     group.add_argument(
