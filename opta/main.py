@@ -36,6 +36,13 @@ from opta.repo import ANY_GIT_ERROR, GitRepo
 from opta.report import report_uncaught_exceptions
 from opta.versioncheck import check_version, install_from_main_branch, install_upgrade
 from opta.watch import FileWatcher
+from opta.middleware import (
+    configure_middleware,
+    MiddlewareConfig,
+    CircuitBreakerConfig,
+    RateLimiterConfig,
+    RetryConfig,
+)
 
 from .dump import dump  # noqa: F401
 
@@ -752,6 +759,27 @@ def main(argv=None, input=None, output=None, force_git_root=None, return_coder=F
 
     is_first_run = is_first_run_of_new_version(io, verbose=args.verbose)
     check_and_load_imports(io, is_first_run, verbose=args.verbose)
+
+    # Configure production middleware
+    middleware_config = MiddlewareConfig(
+        enabled=not getattr(args, "no_middleware", False),
+        verbose=getattr(args, "middleware_verbose", False),
+        circuit_breaker=CircuitBreakerConfig(
+            failure_threshold=getattr(args, "circuit_breaker_threshold", 5),
+            recovery_timeout=getattr(args, "circuit_breaker_timeout", 30.0),
+        ),
+        rate_limiter=RateLimiterConfig(
+            requests_per_minute=getattr(args, "rate_limit_rpm", 60),
+            tokens_per_minute=getattr(args, "rate_limit_tpm", 100000),
+        ),
+        retry=RetryConfig(
+            max_retries=getattr(args, "max_retries", 3),
+            base_delay=getattr(args, "retry_base_delay", 1.0),
+        ),
+    )
+    configure_middleware(middleware_config)
+    if args.verbose and middleware_config.enabled:
+        io.tool_output("Production middleware enabled")
 
     register_models(git_root, args.model_settings_file, io, verbose=args.verbose)
     register_litellm_models(git_root, args.model_metadata_file, io, verbose=args.verbose)

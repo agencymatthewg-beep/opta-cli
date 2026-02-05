@@ -719,6 +719,63 @@ def get_parser(default_config_files, git_root):
     )
 
     ######
+    group = parser.add_argument_group("Middleware settings")
+    group.add_argument(
+        "--no-middleware",
+        action="store_true",
+        help="Disable production middleware (retry, circuit breaker, rate limiting)",
+        default=False,
+    )
+    group.add_argument(
+        "--middleware-verbose",
+        action="store_true",
+        help="Enable verbose middleware logging",
+        default=False,
+    )
+    group.add_argument(
+        "--max-retries",
+        type=int,
+        metavar="MAX_RETRIES",
+        default=3,
+        help="Maximum number of retries for failed API calls (default: 3)",
+    )
+    group.add_argument(
+        "--retry-base-delay",
+        type=float,
+        metavar="SECONDS",
+        default=1.0,
+        help="Base delay in seconds for exponential backoff (default: 1.0)",
+    )
+    group.add_argument(
+        "--circuit-breaker-threshold",
+        type=int,
+        metavar="FAILURES",
+        default=5,
+        help="Number of failures before circuit breaker opens (default: 5)",
+    )
+    group.add_argument(
+        "--circuit-breaker-timeout",
+        type=float,
+        metavar="SECONDS",
+        default=30.0,
+        help="Seconds before circuit breaker attempts recovery (default: 30.0)",
+    )
+    group.add_argument(
+        "--rate-limit-rpm",
+        type=int,
+        metavar="REQUESTS",
+        default=60,
+        help="Maximum requests per minute (default: 60)",
+    )
+    group.add_argument(
+        "--rate-limit-tpm",
+        type=int,
+        metavar="TOKENS",
+        default=100000,
+        help="Maximum tokens per minute (default: 100000)",
+    )
+
+    ######
     group = parser.add_argument_group("Other settings")
     group.add_argument(
         "--disable-playwright",

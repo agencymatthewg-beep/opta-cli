@@ -1,8 +1,8 @@
 from pathlib import Path
 
-from aider.dump import dump  # noqa
-from aider.io import InputOutput
-from aider.watch import FileWatcher
+from opta.dump import dump  # noqa
+from opta.io import InputOutput
+from opta.watch import FileWatcher
 
 
 class MinimalCoder:
@@ -19,7 +19,7 @@ def test_gitignore_patterns():
     """Test that gitignore patterns are properly loaded and matched"""
     from pathlib import Path
 
-    from aider.watch import load_gitignores
+    from opta.watch import load_gitignores
 
     # Create a temporary gitignore file with test patterns
     tmp_gitignore = Path("test.gitignore")

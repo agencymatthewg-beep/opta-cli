@@ -19,6 +19,7 @@ from PIL import Image
 from opta import __version__
 from opta.dump import dump  # noqa: F401
 from opta.llm import litellm
+from opta.middleware import get_middleware, CircuitOpenError, RateLimitExceededError
 from opta.openrouter import OpenRouterModelManager
 from opta.sendchat import ensure_alternating_roles, sanity_check_messages
 from opta.utils import check_pip_install_extra
@@ -998,7 +999,23 @@ class Model(ModelSettings):
 
             self.github_copilot_token_to_open_ai_key(kwargs["extra_headers"])
 
-        res = litellm.completion(**kwargs)
+        # Use production middleware for reliability
+        middleware = get_middleware()
+        estimated_tokens = self.token_count(messages) if messages else 0
+        try:
+            res = middleware.execute(
+                litellm.completion,
+                estimated_tokens=estimated_tokens,
+                **kwargs,
+            )
+            middleware.record_tokens_sent(estimated_tokens)
+        except (CircuitOpenError, RateLimitExceededError):
+            # Re-raise middleware errors for caller to handle
+            raise
+        except Exception:
+            # Let other exceptions bubble up normally
+            raise
+
         return hash_object, res
 
     def simple_send_with_retries(self, messages):

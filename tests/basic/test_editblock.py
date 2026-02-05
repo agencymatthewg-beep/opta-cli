@@ -5,12 +5,12 @@ import unittest
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-from aider.coders import Coder
-from aider.coders import editblock_coder as eb
-from aider.dump import dump  # noqa: F401
-from aider.io import InputOutput
-from aider.models import Model
-from aider.utils import ChdirTemporaryDirectory
+from opta.coders import Coder
+from opta.coders import editblock_coder as eb
+from opta.dump import dump  # noqa: F401
+from opta.io import InputOutput
+from opta.models import Model
+from opta.utils import ChdirTemporaryDirectory
 
 
 class TestUtils(unittest.TestCase):
